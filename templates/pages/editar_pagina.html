@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Editar página | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Editar página</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Guardar cambios</button>
+        <a href="{% url 'detalle_pagina' pagina.id %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

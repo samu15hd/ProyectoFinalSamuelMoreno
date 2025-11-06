@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Páginas publicadas | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Páginas publicadas</h2>
+
+    {% if paginas %}
+        <div class="row">
+            {% for pagina in paginas %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pagina.titulo }}</h5>
+                            <p class="card-text">
+                                {{ pagina.contenido|truncatewords:30 }}
+                            </p>
+                            <a href="{% url 'detalle_pagina' pagina.id %}" class="btn btn-outline-dark">Leer más</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Publicado por {{ pagina.autor.username }} el {{ pagina.fecha_creacion|date:"d M Y" }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No hay páginas aún.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

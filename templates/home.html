@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Bienvenido a BlogMe</h1>
+    <p class="lead">Tu espacio para compartir ideas.</p>
+    <hr class="my-4">
+
+    {% if user.is_authenticated %}
+        <p class="mb-3">Hola {{ user.username }} 👋 ¿Listo para publicar algo nuevo?</p>
+        <a href="{% url 'crear_pagina' %}" class="btn btn-dark">Crear una página</a>
+    {% else %}
+        <p class="mb-3">Iniciá sesión o registrate para comenzar a compartir tus ideas.</p>
+        <a href="{% url 'login' %}" class="btn btn-outline-dark me-2">Iniciar sesión</a>
+        <a href="{% url 'registro' %}" class="btn btn-outline-dark">Registrarse</a>
+    {% endif %}
+</div>
+{% endblock %}

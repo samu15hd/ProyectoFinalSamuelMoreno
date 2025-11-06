@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Perfil | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Mi perfil</h2>
+
+    <div class="card p-4">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                {% if usuario.profile.avatar %}
+                    <img src="{{ usuario.profile.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                {% else %}
+                    <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">
+                        <span class="fs-4">Sin avatar</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <p><strong>Usuario:</strong> {{ usuario.username }}</p>
+                <p><strong>Email:</strong> {{ usuario.email }}</p>
+                <p><strong>Nombre:</strong> {{ usuario.profile.nombre }}</p>
+                <p><strong>Apellido:</strong> {{ usuario.profile.apellido }}</p>
+                <p><strong>Biografía:</strong> {{ usuario.profile.bio }}</p>
+                <p><strong>Link:</strong> 
+                    {% if usuario.profile.link %}
+                        <a href="{{ usuario.profile.link }}" target="_blank">{{ usuario.profile.link }}</a>
+                    {% else %}
+                        <span class="text-muted">No definido</span>
+                    {% endif %}
+                </p>
+                <p><strong>Fecha de nacimiento:</strong> 
+                    {% if usuario.profile.fecha_nacimiento %}
+                        {{ usuario.profile.fecha_nacimiento }}
+                    {% else %}
+                        <span class="text-muted">No definida</span>
+                    {% endif %}
+                </p>
+
+                <div class="mt-4">
+                    <a href="{% url 'editar_perfil' %}" class="btn btn-outline-dark me-2">Editar perfil</a>
+                    <a href="{% url 'password_change' %}" class="btn btn-outline-dark">Cambiar contraseña</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

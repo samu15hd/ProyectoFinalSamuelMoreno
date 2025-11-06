@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Crear página | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Crear nueva página</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Publicar</button>
+    </form>
+</div>
+{% endblock %}

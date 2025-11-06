@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Mensajes | BlogMe{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Mensajes</h2>
+
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Enviar</button>
+    </form>
+
+    <div class="border-top pt-3">
+        {% for mensaje in mensajes %}
+            <div class="mb-3">
+                <strong>{{ mensaje.emisor.username }}</strong> → <em>{{ mensaje.receptor.username }}</em><br>
+                <span>{{ mensaje.contenido }}</span><br>
+                <small class="text-muted">{{ mensaje.fecha_envio|date:"d M Y H:i" }}</small>
+            </div>
+        {% empty %}
+            <p>No hay mensajes aún.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

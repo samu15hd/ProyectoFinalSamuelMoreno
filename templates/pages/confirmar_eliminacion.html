@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar página | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>¿Estás seguro de que querés eliminar esta página?</h2>
+    <p><strong>{{ pagina.titulo }}</strong></p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'detalle_pagina' pagina.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

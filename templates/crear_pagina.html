@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Página | BlogMe{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Crear nueva página</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+        </div>
+        <div class="mb-3">
+            {{ form.subtitulo.label_tag }}
+            {{ form.subtitulo }}
+        </div>
+        <div class="mb-3">
+            {{ form.contenido.label_tag }}
+            {{ form.contenido }}
+        </div>
+        <div class="mb-3">
+            {{ form.imagen.label_tag }}
+            {{ form.imagen }}
+        </div>
+        <button type="submit" class="btn btn-dark">Guardar</button>
+    </form>
+{% endblock %}

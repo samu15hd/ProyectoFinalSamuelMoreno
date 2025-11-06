@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pagina.titulo }} | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ pagina.titulo }}</h2>
+
+    {% if pagina.autor %}
+        <p class="text-muted">Publicado por {{ pagina.autor.username }} el {{ pagina.fecha_creacion|date:"d M Y" }}</p>
+    {% else %}
+        <p class="text-muted">Publicado el {{ pagina.fecha_creacion|date:"d M Y" }}</p>
+    {% endif %}
+
+    <hr>
+
+    <div class="mb-4">
+        {{ pagina.contenido|linebreaks }}
+    </div>
+
+    {% if request.user == pagina.autor %}
+        <a href="{% url 'editar_pagina' pagina.id %}" class="btn btn-outline-dark me-2">Editar</a>
+        <a href="{% url 'eliminar_pagina' pagina.id %}" class="btn btn-outline-danger">Eliminar</a>
+    {% endif %}
+</div>
+{% endblock %}
+

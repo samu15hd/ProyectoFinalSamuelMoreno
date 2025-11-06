@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Perfil | BlogMe{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Editar perfil</h2>
+
+    <form method="post" enctype="multipart/form-data" class="card p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.nombre.label_tag }}
+            {{ form.nombre }}
+        </div>
+        <div class="mb-3">
+            {{ form.apellido.label_tag }}
+            {{ form.apellido }}
+        </div>
+        <div class="mb-3">
+            {{ form.avatar.label_tag }}
+            {{ form.avatar }}
+        </div>
+        <div class="mb-3">
+            {{ form.bio.label_tag }}
+            {{ form.bio }}
+        </div>
+        <div class="mb-3">
+            {{ form.link.label_tag }}
+            {{ form.link }}
+        </div>
+        <div class="mb-3">
+            {{ form.fecha_nacimiento.label_tag }}
+            {{ form.fecha_nacimiento }}
+        </div>
+        <button type="submit" class="btn btn-dark">Guardar cambios</button>
+    </form>
+</div>
+{% endblock %}
